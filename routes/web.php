@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api', function () {
+    return view('api_query');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+
+// Route::get('users/\{id}', function(id) {
+//     //
+// });
+
+Route::get('users/index', 'UserController@index');
+
+// Route::
