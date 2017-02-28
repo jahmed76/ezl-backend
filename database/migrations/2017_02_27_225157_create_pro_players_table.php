@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlayersTable extends Migration
+class CreateProPlayersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,14 @@ class CreatePlayersTable extends Migration
     public function up()
     {
         //
-        if(!Schema::hasTable('users')){
-        Schema::create('players', function(Blueprint $table){
+
+        if(!Schema::hasTable('pro_players')){
+            Schema::create('pro_players', function(Blueprint $table){
             $table->string('id');
             $table->string('name');
             $table->string('username');
-            $table->string('team');
             $table->string('shardId');
+            $table->string('team');
             $table->integer('level');
             $table->double('lifetimeGold');
             $table->integer('winStreak');
