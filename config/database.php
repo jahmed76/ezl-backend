@@ -31,6 +31,9 @@ return [
     |
     */
 
+    /*JOHN'S ADDITION*/
+    'vgapikey' => env('VG_API_KEY', ''),
+
     'connections' => [
 
         'sqlite' => [

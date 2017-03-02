@@ -29,4 +29,11 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('users/index', 'UserController@index');
 
+Route::get('users/index', 'APIController@UserIndex');
+
+Route::get('api/search/player/name/{region}/{pname}', 'VGAPIController@AddPlayer');
+
+Route::get('api/latest/matches/', 'VGAPIController@GetLatestMatches');
+Route::get('api/latest/matches/{region}', 'VGAPIController@GetLatestMatches');
+
 // Route::
