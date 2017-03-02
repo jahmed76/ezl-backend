@@ -17,20 +17,20 @@ class CreateProPlayersTable extends Migration
 
         if(!Schema::hasTable('pro_players')){
             Schema::create('pro_players', function(Blueprint $table){
-            $table->string('id');
+            $table->string('id')->nullable();
             $table->string('name');
-            $table->string('username');
-            $table->string('shardId');
-            $table->string('team');
-            $table->integer('level');
-            $table->double('lifetimeGold');
-            $table->integer('winStreak');
-            $table->integer('lossStreak');
-            $table->integer('played');
-            $table->integer('wins');
-            $table->integer('playedRanked');
-            $table->integer('xp');
-            $table->timestamp('createdAt');
+            $table->string('username')->nullable();
+            $table->string('shardId')->nullable();
+            $table->string('team')->nullable();
+            $table->integer('level')->nullable();
+            $table->double('lifetimeGold')->nullable();
+            $table->integer('winStreak')->nullable();
+            $table->integer('lossStreak')->nullable();
+            $table->integer('played')->nullable();
+            $table->integer('wins')->nullable();
+            $table->integer('playedRanked')->nullable();
+            $table->integer('xp')->nullable();
+            $table->timestamp('createdAt')->nullable();
         });
         }
     }
