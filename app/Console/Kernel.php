@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         Commands\PopulateProPlayers::class,
-        Commands\SkimAPI::class
+        Commands\SkimAPI::class,
+        Commands\AssignTeams::class
     ];
 
     /**

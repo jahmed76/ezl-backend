@@ -78,4 +78,21 @@ class VGAPIController extends Controller
         //return $json->included[0]->type;
 
     }
+
+    public function GetSpecialMatch($player = 'kappie'){
+        $key = config('database.vgapikey');
+        $url = $this->API_URL . "eu/matches?filter[playerNames]=" . $player;
+        
+        $cURL = curl_init($url);
+        curl_setopt($cURL, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($cURL, CURLOPT_HTTPHEADER, array("Authorization: " . $key, "X-TITLE-ID: semc-vainglory", "Accept: application/vnd.api+json"));
+        curl_setopt($cURL, CURLOPT_URL, $url);
+        curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
+        $output = curl_exec($cURL);
+        echo $output;
+    }
+
+
+
+
 }

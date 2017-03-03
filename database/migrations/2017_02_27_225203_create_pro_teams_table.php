@@ -18,13 +18,15 @@ class CreateProTeamsTable extends Migration
 		
 		if(!Schema::hasTable('pro_teams')){
 			Schema::create('pro_teams', function(Blueprint $table){
-				$table->string('id');
+				$table->increments('id');
 				$table->string('name');
-				$table->json('players');
-				$table->integer('level');
-				$table->string('owner');
-				$table->integer('rank');
-				//M				aybe more?
+				$table->string('shardId');
+				$table->string('player_one')->nullable();
+				$table->string('player_two')->nullable();
+				$table->string('player_three')->nullable();
+				$table->integer('level')->nullable();
+				$table->string('owner')->nullable();
+				$table->integer('rank')->nullable();
 			}
 			);
 		}

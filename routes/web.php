@@ -36,4 +36,6 @@ Route::get('api/search/player/name/{region}/{pname}', 'VGAPIController@AddPlayer
 Route::get('api/latest/matches/', 'VGAPIController@GetLatestMatches');
 Route::get('api/latest/matches/{region}', 'VGAPIController@GetLatestMatches');
 
+Route::get('api/special/{player}', 'VGAPIController@GetSpecialMatch');
+
 // Route::

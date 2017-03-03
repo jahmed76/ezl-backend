@@ -17,7 +17,7 @@ class CreateProPlayersTable extends Migration
 
         if(!Schema::hasTable('pro_players')){
             Schema::create('pro_players', function(Blueprint $table){
-                $table->increments('id')->primary();
+                $table->increments('id');
                 $table->string('player_id')->nullable();
                 $table->string('name');
                 $table->string('username')->nullable();
