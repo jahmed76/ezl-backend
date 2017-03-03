@@ -1,38 +1,52 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Console\Commands;
 
-use Illuminate\Http\Request;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class VGAPIController extends Controller
+class SkimAPI extends Command
 {
-    //
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'john:skimeu';
 
-    //private $API_KEY = config('database.vgapikey');
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
 
-    private $API_URL = "https://api.dc01.gamelockerapp.com/shards/";
-
-    public function AddPlayer($region = "eu", $pName = "kappie"){
-        
-        $key = config('database.vgapikey');
-        $url = $this->API_URL . $region . "/players?filter[playerNames]=" . $pName;
-        //$url = $this->API_URL . $region . "/players?filter[playerNames]=" . $pName;
-        
-        $cURL = curl_init($url);
-        curl_setopt($cURL, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($cURL, CURLOPT_HTTPHEADER, array("Authorization: " . $key, "X-TITLE-ID: semc-vainglory", "Accept: application/vnd.api+json"));
-        curl_setopt($cURL, CURLOPT_URL, $url);
-        curl_setopt($cURL, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($cURL);
-        //$http_result = $output['']
-        return json_encode($output);
-
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function GetLatestMatches($region = "eu"){
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        //
+
+
+        $API_URL = "https://api.dc01.gamelockerapp.com/shards/";
+
+        $region = "eu";
+
         $key = config('database.vgapikey');
-        $url = $this->API_URL . $region . "/matches";
+        $url = $API_URL . $region . "/matches";
         
         $cURL = curl_init($url);
         curl_setopt($cURL, CURLOPT_SSL_VERIFYPEER, false);
@@ -75,7 +89,9 @@ class VGAPIController extends Controller
             }
         }
 
-        //return $json->included[0]->type;
+
+
+
 
     }
 }
