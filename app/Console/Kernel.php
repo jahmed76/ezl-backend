@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->call('App\Http\Controllers\VGAPIController@GetLatestMatches')
-            ->cron('*/7 * * * *');
+        // $schedule->call('App\Http\Controllers\VGAPIController@GetLatestMatches')
+        //     ->cron('*/7 * * * *');
 
     }
 
@@ -42,3 +42,8 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 }
+
+
+
+
+

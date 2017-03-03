@@ -27,6 +27,9 @@ class CreateVgMatches extends Migration
                 $table->string('game_mode');
                 $table->string('end_game_reason');
                 $table->string('queue');
+                $table->string('roster_blue');
+                $table->string('roster_red');
+                //Store players?
                 $table->timestamps();
             });
 
@@ -41,5 +44,7 @@ class CreateVgMatches extends Migration
     public function down()
     {
         //
+        if(!Schema::hasTable('vg_matches'))
+            Schema::drop('vg_matches');
     }
 }

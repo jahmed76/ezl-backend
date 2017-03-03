@@ -47,26 +47,34 @@ class VGAPIController extends Controller
 
         //Disperse included amongst above arrays
         
-        foreach($json->included as $inc){
+        // foreach($json->included as $inc){
 
-        }
+        // }
 
+
+        
         //Add comparison against arrays for more thorough data model
         foreach($json->data as $data){
-            DB::table('vg_matches')->insert(
-                ['match_id' => $data->id,
-                'match_created_at' => $data->attributes->createdAt,
-                'duration' => $data->attributes->duration,
-                'shard' => $data->attributes->shardId,
-                'game_mode' => $data->attributes->gameMode,
-                'patch' => $data->attributes->patchVersion,
-                'end_game_reason' => $data->attributes->stats->endGameReason,
-                'queue' => $data->attributes->stats->queue,
-                'title_id' => $data->attributes->titleId
-                ]);
+            $bAdd = DB::table('vg_matches')->where('match_id', $data->id)->first();
+            //echo json_encode($bAdd);
+            if(!$bAdd){
+                DB::table('vg_matches')->insert(
+                    ['match_id' => $data->id,
+                    'match_created_at' => $data->attributes->createdAt,
+                    'duration' => $data->attributes->duration,
+                    'shard' => $data->attributes->shardId,
+                    'game_mode' => $data->attributes->gameMode,
+                    'patch' => $data->attributes->patchVersion,
+                    'end_game_reason' => $data->attributes->stats->endGameReason,
+                    'queue' => $data->attributes->stats->queue,
+                    'title_id' => $data->attributes->titleId,
+                    'roster_blue' => $data->relationships->rosters->data[0]->id,
+                    'roster_red' => $data->relationships->rosters->data[1]->id
+                    ]);
+            }
         }
 
-        return $json->included[0]->type;
+        //return $json->included[0]->type;
 
     }
 }
