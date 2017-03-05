@@ -26,7 +26,31 @@ class VGAPIController extends Controller
         curl_setopt($cURL, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($cURL);
         //$http_result = $output['']
-        return json_encode($output);
+        //return $output;
+        $json = json_decode($output);
+
+        //foreach($json->data as $data){
+            //$bAdd = DB::table('vg_players')->where('player_id', $data->id)->value('last_updated');
+            DB::table('vg_players')->insert([
+                'player_id' => $json->data->id,
+                'type' => $json->data->type,
+                'name' => $json->data->attributes->name,
+                'shard' => $json->data->attributes->shardId,
+                'title_id' => $json->data->attributes->titleId,
+                //'created_at' => $json->data->attributes->createdAt,
+                'level' => $json->data->attributes->stats->level,
+                'wins' => $json->data->attributes->stats->wins,
+                'played' => $json->data->attributes->stats->played,
+                'played_ranked' => $json->data->attributes->stats->played_ranked,
+                'loss_streak' => $json->data->attributes->stats->lossStreak,
+                'win_streak' => $json->data->attributes->stats->winStreak,
+                'life_time_gold' => $json->data->attributes->stats->lifetimeGold,
+                'xp' => $json->data->attributes->stats->xp,
+            ]);
+
+        //}
+
+
 
     }
 
@@ -47,13 +71,7 @@ class VGAPIController extends Controller
         $participants = array();
 
         //Disperse included amongst above arrays
-        
-        // foreach($json->included as $inc){
 
-        // }
-
-
-        
         //Add comparison against arrays for more thorough data model
         foreach($json->data as $data){
             $bAdd = DB::table('vg_matches')->where('match_id', $data->id)->first();
