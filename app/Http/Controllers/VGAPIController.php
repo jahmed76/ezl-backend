@@ -16,7 +16,7 @@ class VGAPIController extends Controller
     public function AddPlayer($region = "eu", $pName = "kappie"){
         
         $key = config('database.vgapikey');
-        $url = $this->API_URL . $region . "/players?filter[playerNames]=" . $pName;
+        $url = $this->API_URL . $region . "/players/?filter[playerName]=" . $pName;
         //$url = $this->API_URL . $region . "/players?filter[playerNames]=" . $pName;
         
         $cURL = curl_init($url);
