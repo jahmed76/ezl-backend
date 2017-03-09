@@ -15,14 +15,14 @@ class AssignTeams extends Command
      *
      * @var string
      */
-    protected $signature = 'john:assignteams';
+    protected $signature = 'John:AssignTeams';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Assign teams for mock fantasy';
 
     /**
      * Create a new command instance.

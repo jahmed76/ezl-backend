@@ -11,14 +11,14 @@ class ClearTeams extends Command
      *
      * @var string
      */
-    protected $signature = 'john:clearteams';
+    protected $signature = 'John:ClearTeams';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Unassigns all teams for mock fantasy';
 
     /**
      * Create a new command instance.

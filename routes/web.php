@@ -38,4 +38,11 @@ Route::get('api/latest/matches/{region}', 'VGAPIController@GetLatestMatches');
 
 Route::get('api/special/{player}', 'VGAPIController@GetSpecialMatch');
 
+Route::group(['prefix' => 'data'], function() {
+    //
+    Route::get('proteams', 'APIController@GetProTeamRosters')->middleware('cors');
+    //Route::any('proteams', 'APIController@GetProTeamRosters');
+
+});
+
 // Route::
