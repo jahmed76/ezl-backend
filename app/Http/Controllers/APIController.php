@@ -14,4 +14,9 @@ class APIController extends Controller
         //return view('user.index', ['users' => $users]);
         return response()->json($users);
     }
+
+    public function GetTeamRosters(){
+        
+    }
+
 }
