@@ -17,16 +17,16 @@ class APIController extends Controller
     }
 
     public function GetProTeamRosters(){
-        $headers = [
-             'Access-Control-Allow-Origin' => '*',
-         'Access-Control-Allow-Methods'=> 'POST, GET, OPTIONS, PUT, DELETE',
-         'Access-Control-Allow-Headers'=> 'Content-Type, X-Auth-Token, Origin'
-        ];
+        // $headers = [
+        //      'Access-Control-Allow-Origin' => '*',
+        //  'Access-Control-Allow-Methods'=> 'POST, GET, OPTIONS, PUT, DELETE',
+        //  'Access-Control-Allow-Headers'=> 'Content-Type, X-Auth-Token, Origin'
+        // ];
         $response = DB::table('pro_teams')->get();
 
-        //return response()->json($response);
+        return response()->json($response);
 
-        return Response::make('OK', 200, $headers)->json($response);
+        //return Response::make('OK', 200, $headers)->json($response);
     }
 
 }

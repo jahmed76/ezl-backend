@@ -31,12 +31,7 @@ Route::get('users/index', 'UserController@index');
 
 Route::get('users/index', 'APIController@UserIndex');
 
-Route::get('api/search/player/name/{region}/{pname}', 'VGAPIController@AddPlayer');
 
-Route::get('api/latest/matches/', 'VGAPIController@GetLatestMatches');
-Route::get('api/latest/matches/{region}', 'VGAPIController@GetLatestMatches');
-
-Route::get('api/special/{player}', 'VGAPIController@GetSpecialMatch');
 
 Route::group(['prefix' => 'data'], function() {
     //
@@ -45,4 +40,17 @@ Route::group(['prefix' => 'data'], function() {
 
 });
 
+Route::group(['prefix' => 'api'], function() {
+    //
+    Route::get('search/player/name/{region}/{pname}', 'VGAPIController@AddPlayer')->middleware('cors');
+
+    Route::get('latest/matches/', 'VGAPIController@GetLatestMatches')->middleware('cors');
+    Route::get('latest/matches/{region}', 'VGAPIController@GetLatestMatches')->middleware('cors');
+
+    Route::get('special/{player}', 'VGAPIController@GetSpecialMatch')->middleware('cors');
+});
+
 // Route::
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
