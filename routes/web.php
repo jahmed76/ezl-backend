@@ -50,6 +50,19 @@ Route::group(['prefix' => 'api'], function() {
     Route::get('special/{player}', 'VGAPIController@GetSpecialMatch')->middleware('cors');
 });
 
+
+Route::group(['prefix' => 'fantasy'], function() {
+    //
+    
+    
+    Route::get('room/add', 'FantasyController@AddRoom');
+    
+    // Route::post('room/add', 'FantasyController@AddRoom');
+    // Route::post('room/add/{options}', 'FantasyController@AddRoom');
+    
+});
+
+
 // Route::
 Auth::routes();
 

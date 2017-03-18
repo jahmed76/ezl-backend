@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         //
         Commands\PopulateProPlayers::class,
         Commands\SkimAPI::class,
-        Commands\AssignTeams::class
+        Commands\AssignTeams::class,
+        Commands\init_rulesets::class,
     ];
 
     /**
