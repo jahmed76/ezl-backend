@@ -96,7 +96,32 @@ class PopulateProPlayers extends Command
                         "CitrusEmpire",
                         "Shades",
                         "Pieter76",
-                        "teepee");
+                        "teepee",
+                        "ZARRYCHERRY",
+                        "Z3RUS",
+                        "Moridin7",
+                        "Enmitous",
+                        "KingCosmic",
+                        "goldensavers",
+                        "Eightbit",
+                        "MujyKun",
+                        "cobra10",
+                        "Helios564",
+                        "TypicalToker",
+                        "ZzSnipeRZ",
+                        "sOmEbboDy",
+                        "emuthenerd",
+                        "Jerqo",
+                        "VeloAxS",
+                        "LostBoyToph",
+                        "DrakenMythik",
+                        "SlickbackJr",
+                        "xXCenoXx",
+                        "Ar4dek",
+                        "Grateshot59",
+                        "MidnightLegacy",
+                        "TheBrightLord",
+                        "Mistican");
 
                         foreach($pros as $pro){
                             DB::table('pro_players')->insert([
@@ -190,6 +215,31 @@ class PopulateProPlayers extends Command
 // "Shades"    NA
 // "Pieter76"    EU
 // "teepee"    EU
+// "ZARRYCHERRY"
+// "Z3RUS"
+// "Moridin7"
+// "Enmitous"
+// "KingCosmic"
+// "goldensavers"
+// "Eightbit"
+// "MujyKun"
+// "cobra10"
+// "Helios564"
+// "TypicalToker"
+// "ZzSnipeRZ"
+// "sOmEbboDy"
+// "emuthenerd"
+// "Jerqo"
+// "VeloAxS"
+// "LostBoyToph"
+// "DrakenMythik"
+// "SlickbackJr"
+// "xXCenoXx"
+// "Ar4dek"
+// "Grateshot59"
+// "MidnightLegacy"
+// "TheBrightLord"
+// "Mistican"
 
 
 

@@ -14,7 +14,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\PopulateProPlayers::class
+        Commands\PopulateProPlayers::class,
+        Commands\SkimAPI::class,
+        Commands\AssignTeams::class,
+        Commands\init_rulesets::class,
     ];
 
     /**
@@ -27,8 +30,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->call('App\Http\Controllers\VGAPIController@GetLatestMatches')
-            ->cron('*/7 * * * *');
+        //$schedule->call('john:skimeu')->everyFiveMinutes();
+        //     ->cron('*/7 * * * *');
+
+        $schedule->command('john:skimeu');
 
     }
 
@@ -42,3 +47,8 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 }
+
+
+
+
+

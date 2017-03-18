@@ -1,0 +1,27 @@
+{
+    "data": {
+        "type": "player",
+        "id": "d3c628cc-cc12-11e5-9e12-06388a2f2ea7",
+        "attributes": {
+            "createdAt": "2017-03-03T19:06:50Z",
+            "name": "kappie",
+            "shardId": "eu",
+            "stats": {
+                "level": 30,
+                "lifetimeGold": 14099.125,
+                "lossStreak": 0,
+                "played": 2607,
+                "played_ranked": 1513,
+                "winStreak": 1,
+                "wins": 1287,
+                "xp": 175450
+            },
+            "titleId": "semc-vainglory"
+        },
+        "relationships": {
+            "assets": {
+                "data": []
+            }
+        }
+    }
+}

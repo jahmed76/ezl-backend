@@ -16,7 +16,8 @@ class CreatePlayersTable extends Migration
         //
         if(!Schema::hasTable('users')){
         Schema::create('players', function(Blueprint $table){
-            $table->string('id');
+            
+            $table->string('player_id');
             $table->string('name');
             $table->string('username');
             $table->string('team');

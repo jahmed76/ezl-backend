@@ -20,5 +20,29 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'player_name' => $faker->username,
+    ];
+});
+
+$factory->define(App\ProPlayer::class, function(Faker\Generator $faker){
+    return [
+        'name' => $faker->name
+    ];
+});
+
+$factory->define(App\ProTeam::class, function(Faker\Generator $faker){
+    return [
+        'name' => $faker->company
+    ];
+});
+
+$factory->define(App\VGPlayer::class, function (Faker\Generator $faker) {
+    //static $password;
+
+    return [
+        'name' => $faker->username,
+        'ezl_username' => $faker->username,
+        'ezl_email' => $faker->unique()->safeEmail,
+        //'player_id' => $faker-> ===========>>>Finish this factory and populate VG community members
     ];
 });
