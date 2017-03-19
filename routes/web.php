@@ -32,7 +32,7 @@ Route::get('users/index', 'UserController@index');
 
 Route::get('users/index', 'APIController@UserIndex');
 
-// Route::post('/register', 'RegisterController');
+//Route::post('register', 'RegisterController');
 
 Route::group(['prefix' => 'data'], function() {
     //
@@ -68,3 +68,7 @@ Route::group(['prefix' => 'fantasy'], function() {
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

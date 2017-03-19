@@ -65,12 +65,49 @@ fantasy_app.controller('fantasy_joinController', function ($scope) {
   $scope.message = 'fantasy_join controller is working';
 });
 
-fantasy_app.controller('loginController', function ($scope) {
-  $scope.message = 'login controller is working';
+fantasy_app.controller('loginController', function ($scope, $http, $location, $rootScope) {
+    $scope.message = 'login controller is working';
+
+    $scope.rFormData = {};
+    $scope.loginFeedback = "";
+
+    $scope.rFormSubmit = function () {
+        $http.post('login', $scope.rFormData)
+        .then(function (res) {
+            //location.reload();
+            if (res) {
+                $rootScope.User = res.data;
+            }
+            
+            $scope.loginFeedback = "Registration Success!";
+            $location.url('/');
+        }, function () {
+            alert('I failed!');
+        });
+    }
+
 });
 
-fantasy_app.controller('registerController', function ($scope) {
+fantasy_app.controller('registerController', function ($scope, $http, $location) {
   $scope.message = 'Register controller is working';
+
+  $scope.rFormData = {};
+  $scope.loginFeedback = "";
+
+    $scope.rFormSubmit = function () {
+        $http.post('register', $scope.rFormData)
+        .then(function () {
+            //location.reload();
+            $scope.loginFeedback = "Registration Success!";
+            setTimeout(function () {
+                $location.url('/login');
+            }, 100);
+        }, function () {
+            alert('I failed!');
+        });
+    }
+
+
 });
 
 fantasy_app.directive("fantasyNavBar", function () {

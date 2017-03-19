@@ -55,6 +55,22 @@ class RegisterController extends Controller
         ]);
     }
 
+
+    // protected function validator($data)
+    // {
+    //     if($data){
+    //         $data = json_decode($data, true);
+
+    //         return Validator::make($data, [
+    //         'name' => 'required|max:255',
+    //         'email' => 'required|email|max:255|unique:users',
+    //         'password' => 'required|min:6|confirmed',
+    //     ]);
+    //     }
+    // }
+
+
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,4 +85,21 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+
+    // protected function create($data)
+    // {
+    //     if($data){
+    //         $data = json_decode($data, true);
+
+    //         return User::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => bcrypt($data['password']),
+    //     ]);
+    //     }
+        
+    // }
+
+
 }
