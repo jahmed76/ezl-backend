@@ -12,23 +12,34 @@ class FantasyController extends Controller
 {
     //
 
-    public function AddRoom($options = 0){
-        if($options !== 0){
+    public function AddRoom(Request $req){
+        // if($options !== 0){
 
-        } else {
+        // } else {
             DB::table('fantasy_rooms')->insert(
                 [
                     'room_name' => 'TestRoom',
-                    // 'owner' => \Auth::user()->id,
+                     'owner' => \Auth::user()->id,
                     'ruleset' => DB::table('fantasy_rulesets')
                                             ->where('title', 'Default')
                                             ->value('rules'),
                     'members' => json_encode(array())
-                    
                 ]);
+        // }
+
+
+    }
+
+    public function JoinRoom(Request $req){
+        if($options !== 0){
+
         }
+    }
 
+    public function BeginDraft(Request $req){
+        if($options !== 0){
 
+        }
     }
 
 

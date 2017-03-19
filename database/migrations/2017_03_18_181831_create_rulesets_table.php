@@ -15,15 +15,15 @@ class CreateRulesetsTable extends Migration
     public function up()
     {
         //
-        if(!Schema::hasTable('fantasy_rulesets')){
+        if(!Schema::hasTable('fantasy_rulesets') && Schema::hasTable('users')){
             Schema::create('fantasy_rulesets', function (Blueprint $table) {
                 $table->increments('id');
                 //$table->('fantasy_roster_id');
                 $table->string('title')->unique();
 
 
-                // $table->foreign('creator')
-                //         ->references('id')->on('users');
+                $table->foreign('creator')
+                        ->references('id')->on('users');
 
                 $table->string('creator');
 

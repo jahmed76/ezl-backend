@@ -58,7 +58,7 @@ Route::group(['prefix' => 'fantasy'], function() {
     Route::get('room/add', 'FantasyController@AddRoom');
     
     // Route::post('room/add', 'FantasyController@AddRoom');
-    // Route::post('room/add/{options}', 'FantasyController@AddRoom');
+    Route::post('room/add/{options}', 'FantasyController@AddRoom');
     
 });
 

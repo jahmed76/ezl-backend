@@ -14,14 +14,14 @@ class CreateFantasyRooms extends Migration
     public function up()
     {
         //
-        if(!Schema::hasTable('fantasy_rooms')){
+        if(!Schema::hasTable('fantasy_rooms') && Schema::hasTable('users')){
             Schema::create('fantasy_rooms', function (Blueprint $table) {
                 $table->increments('room_id');
                 //$table->('fantasy_roster_id');
 
 
-                // $table->foreign('owner')
-                //         ->references('id')->on('users')->nullable();
+                $table->foreign('owner')
+                        ->references('id')->on('users')->nullable();
 
                 $table->string('room_name')->unique();
 
@@ -32,7 +32,7 @@ class CreateFantasyRooms extends Migration
 
                 $table->json('members')->nullable();
                 
-                $table->json('points')->nullable();
+                //$table->json('points')->nullable();
 
 
 
