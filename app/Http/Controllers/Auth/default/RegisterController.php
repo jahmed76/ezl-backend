@@ -6,7 +6,6 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class RegisterController extends Controller
 {
@@ -39,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
     /**
@@ -88,6 +87,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     // protected function create($data)
     // {
     //     if($data){
@@ -101,20 +101,6 @@ class RegisterController extends Controller
     //     }
         
     // }
-
-    public function register(Request $request)
-    {
-        //if($request)
-
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
-    }
 
 
 }

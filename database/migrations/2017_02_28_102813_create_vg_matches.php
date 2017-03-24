@@ -44,7 +44,6 @@ class CreateVgMatches extends Migration
     public function down()
     {
         //
-        if(!Schema::hasTable('vg_matches'))
-            Schema::drop('vg_matches');
+        Schema::dropIfExists('vg_matches');
     }
 }

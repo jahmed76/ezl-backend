@@ -13,33 +13,37 @@ fantasy_app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
     .when('/', {
-      templateUrl: './fantasy/fantasy_home.html',
+      templateUrl: './ezl/fantasy/fantasy_home.html',
       controller: 'fantasy_homeController'
     })
 
     .when('/fantasy_how_to_play', {
-      templateUrl: './fantasy/fantasy_how_to_play.html',
+      templateUrl: './ezl/fantasy/fantasy_how_to_play.html',
       controller: 'fantasy_how_to_playController'
     })
 
     .when('/fantasy_room', {
-      templateUrl: './fantasy/fantasy_room.html',
+        templateUrl: './ezl/fantasy/fantasy_room.html',
       controller: 'fantasy_roomController'
     })
 
     .when('/fantasy_join', {
-      templateUrl: './fantasy/fantasy_join.html',
+      templateUrl: './ezl/fantasy/fantasy_join.html',
       controller: 'fantasy_joinController'
     })
 
-    .when('/login', {
-      templateUrl: './pages/login.html',
+    .when('/userlogin', {
+        templateUrl: './ezl/pages/login.html',
       controller: 'loginController'
     })
 
-    .when('/register', {
-      templateUrl: './pages/register.html',
+    .when('/registration', {
+        templateUrl: './ezl/pages/register.html',
       controller: 'registerController'
+    })
+
+    .otherwise({
+        redirectTo: '/'
     });
 
   // .when('/fantasy_create', {
@@ -72,20 +76,21 @@ fantasy_app.controller('loginController', function ($scope, $http, $location, $r
     $scope.loginFeedback = "";
 
     $scope.rFormSubmit = function () {
-        $http.post('login', $scope.rFormData)
+        $http.post('login', JSON.stringify($scope.rFormData))
         .then(function (res) {
             //location.reload();
+            alert(res.data);
             if (res) {
                 $rootScope.User = res.data;
             }
             
             $scope.loginFeedback = "Registration Success!";
-            $location.url('/');
+            //$location.url('/');
         }, function () {
             alert('I failed!');
         });
     }
-
+    
 });
 
 fantasy_app.controller('registerController', function ($scope, $http, $location) {
@@ -95,12 +100,16 @@ fantasy_app.controller('registerController', function ($scope, $http, $location)
   $scope.loginFeedback = "";
 
     $scope.rFormSubmit = function () {
-        $http.post('register', $scope.rFormData)
-        .then(function () {
+        $http.post('/register', JSON.stringify($scope.rFormData), {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (res) {
             //location.reload();
+            alert(JSON.stringify(res.data));
             $scope.loginFeedback = "Registration Success!";
             setTimeout(function () {
-                $location.url('/login');
+                //$location.url('/login');
             }, 100);
         }, function () {
             alert('I failed!');
@@ -113,7 +122,7 @@ fantasy_app.controller('registerController', function ($scope, $http, $location)
 fantasy_app.directive("fantasyNavBar", function () {
   return {
     restrict: "AECM",
-    templateUrl: "./include/fantasy_header.html",
+    templateUrl: "./ezl/include/fantasy_header.html",
     link: link
   };
 
@@ -145,6 +154,6 @@ fantasy_app.directive("fantasyNavBar", function () {
 fantasy_app.directive("fantasyFooter", function () {
   return {
     restrict: "AECM",
-    templateUrl: "./include/fantasy_footer.html"
+    templateUrl: "./ezl/include/fantasy_footer.html"
   };
 });

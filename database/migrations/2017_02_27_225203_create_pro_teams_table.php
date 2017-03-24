@@ -21,9 +21,13 @@ class CreateProTeamsTable extends Migration
 				$table->increments('id');
 				$table->string('name');
 				$table->string('shardId');
-				$table->string('player_one')->nullable();
-				$table->string('player_two')->nullable();
-				$table->string('player_three')->nullable();
+				$table->string('carry_starter')->nullable();
+				$table->string('carry_sub')->nullable();
+				$table->string('jungle_starter')->nullable();
+				$table->string('jungle_sub')->nullable();
+				$table->string('captain_starter')->nullable();
+				$table->string('captain_sub')->nullable();
+				$table->string('any_sub')->nullable();
 				$table->integer('level')->nullable();
 				$table->string('owner')->nullable();
 				$table->integer('rank')->nullable();
@@ -41,5 +45,6 @@ class CreateProTeamsTable extends Migration
 	    public function down()
 	    {
 		//
+		Schema::dropIfExists('pro_teams');
 	}
 }

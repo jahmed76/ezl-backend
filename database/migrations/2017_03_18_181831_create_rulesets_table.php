@@ -44,5 +44,6 @@ class CreateRulesetsTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('fantasy_rulesets');
     }
 }

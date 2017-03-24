@@ -40,5 +40,6 @@ class CreateRostersTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('vg_rosters');
     }
 }

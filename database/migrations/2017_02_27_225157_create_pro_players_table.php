@@ -23,6 +23,7 @@ class CreateProPlayersTable extends Migration
                 $table->string('username')->nullable();
                 $table->string('shardId')->nullable();
                 $table->string('team')->nullable();
+                $table->string('position')->nullable();
                 $table->integer('level')->nullable();
                 $table->double('lifetimeGold')->nullable();
                 $table->integer('winStreak')->nullable();
@@ -44,5 +45,6 @@ class CreateProPlayersTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('pro_players');
     }
 }

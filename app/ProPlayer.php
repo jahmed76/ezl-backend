@@ -8,7 +8,10 @@ class ProPlayer extends Model
 {
     //
     protected $fillable = [
-        'name'
+        'name',
+        'shadId',
+        'team',
+        'position',
     ];
 
     public $timestamps = false;

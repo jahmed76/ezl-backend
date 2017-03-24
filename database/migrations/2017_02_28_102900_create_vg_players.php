@@ -50,5 +50,6 @@ class CreateVgPlayers extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('vg_players');
     }
 }

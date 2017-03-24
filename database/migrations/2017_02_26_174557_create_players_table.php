@@ -14,7 +14,7 @@ class CreatePlayersTable extends Migration
     public function up()
     {
         //
-        if(!Schema::hasTable('users')){
+        if(!Schema::hasTable('players')){
         Schema::create('players', function(Blueprint $table){
             
             $table->string('player_id');
@@ -43,5 +43,6 @@ class CreatePlayersTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('players');
     }
 }

@@ -20,8 +20,8 @@ class CreateFantasyRooms extends Migration
                 //$table->('fantasy_roster_id');
 
 
-                $table->foreign('owner')
-                        ->references('id')->on('users')->nullable();
+                // $table->foreign('owner')
+                //         ->references('id')->on('users')->nullable();
 
                 $table->string('room_name')->unique();
 
@@ -50,5 +50,6 @@ class CreateFantasyRooms extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('fantasy_rooms');
     }
 }

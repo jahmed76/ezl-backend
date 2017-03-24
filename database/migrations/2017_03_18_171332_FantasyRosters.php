@@ -24,5 +24,6 @@ class FantasyRosters extends Migration
     public function down()
     {
         //
+        
     }
 }

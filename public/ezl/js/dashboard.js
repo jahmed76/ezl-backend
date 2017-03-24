@@ -13,12 +13,12 @@ db_app.config(['$routeProvider', function($routeProvider) {
    $routeProvider
 
       .when('/', {
-         templateUrl : './dashboard/db_home.html',
+          templateUrl: './ezl/dashboard/db_home.html',
          controller : 'db_homeController'
       })
 
       .when('/news', {
-         templateUrl : './dashboard/db_new_post.html',
+         templateUrl : './ezl/dashboard/db_new_post.html',
          controller : 'db_new_postController'
       });
 }]);
@@ -35,7 +35,7 @@ db_app.controller('db_new_postController', function($scope) {
 db_app.directive("dbNavBar", function() {
    return {
       restrict: "AECM",
-      templateUrl: "./include/db_header.html",
+      templateUrl: "./ezl/include/db_header.html",
       link: link
    };
 
@@ -67,6 +67,6 @@ db_app.directive("dbNavBar", function() {
 db_app.directive("dbFooter", function() {
    return {
       restrict: "AECM",
-      templateUrl: "./include/db_footer.html"
+      templateUrl: "./ezl/include/db_footer.html"
    };
 });

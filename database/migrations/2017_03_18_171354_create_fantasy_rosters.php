@@ -52,5 +52,6 @@ class CreateFantasyRosters extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('fantasy_rosters');
     }
 }

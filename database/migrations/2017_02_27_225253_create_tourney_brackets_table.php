@@ -15,10 +15,10 @@ class CreateTourneyBracketsTable extends Migration
     {
         //
 
-        if(!Schema::hasTable('users')){
-            //Tournaments - TBA
+        // if(!Schema::hasTable('users')){
+        //     //Tournaments - TBA
 
-        }
+        // }
     }
 
     /**
@@ -29,5 +29,6 @@ class CreateTourneyBracketsTable extends Migration
     public function down()
     {
         //
+        //Schema::dropIfExists('users');
     }
 }
