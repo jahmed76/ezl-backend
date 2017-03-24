@@ -10,41 +10,41 @@ fantasy_app.run(function ($rootScope, $timeout) {
 });
 
 fantasy_app.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider
+    $routeProvider
 
-    .when('/', {
-      templateUrl: './ezl/fantasy/fantasy_home.html',
-      controller: 'fantasy_homeController'
-    })
+      .when('/', {
+          templateUrl: './ezl/fantasy/fantasy_home.html',
+          controller: 'fantasy_homeController'
+      })
 
-    .when('/fantasy_how_to_play', {
-      templateUrl: './ezl/fantasy/fantasy_how_to_play.html',
-      controller: 'fantasy_how_to_playController'
-    })
+      .when('/fantasy_how_to_play', {
+          templateUrl: './ezl/fantasy/fantasy_how_to_play.html',
+          controller: 'fantasy_how_to_playController'
+      })
 
-    .when('/fantasy_room', {
-        templateUrl: './ezl/fantasy/fantasy_room.html',
-      controller: 'fantasy_roomController'
-    })
+      .when('/fantasy_room', {
+          templateUrl: './ezl/fantasy/fantasy_room.html',
+          controller: 'fantasy_roomController'
+      })
 
-    .when('/fantasy_join', {
-      templateUrl: './ezl/fantasy/fantasy_join.html',
-      controller: 'fantasy_joinController'
-    })
+      .when('/fantasy_join', {
+          templateUrl: './ezl/fantasy/fantasy_join.html',
+          controller: 'fantasy_joinController'
+      })
 
-    .when('/userlogin', {
-        templateUrl: './ezl/pages/login.html',
-      controller: 'loginController'
-    })
+      .when('/userlogin', {
+          templateUrl: './ezl/pages/login.html',
+          controller: 'loginController'
+      })
 
-    .when('/registration', {
-        templateUrl: './ezl/pages/register.html',
-      controller: 'registerController'
-    })
+      .when('/registration', {
+          templateUrl: './ezl/pages/register.html',
+          controller: 'registerController'
+      });
 
-    .otherwise({
-        redirectTo: '/'
-    });
+    //.otherwise({
+    //    redirectTo: '/'
+    //});
 
   // .when('/fantasy_create', {
   //    templateUrl : './fantasy/fantasy_create.html',
@@ -69,19 +69,19 @@ fantasy_app.controller('fantasy_joinController', function ($scope) {
   $scope.message = 'fantasy_join controller is working';
 });
 
-fantasy_app.controller('loginController', function ($scope, $http, $location, $rootScope) {
+fantasy_app.controller('loginController', function ($scope, $http) {
     $scope.message = 'login controller is working';
 
-    $scope.rFormData = {};
+    $scope.lFormData = {};
     $scope.loginFeedback = "";
 
-    $scope.rFormSubmit = function () {
-        $http.post('login', JSON.stringify($scope.rFormData))
+    $scope.lFormSubmit = function () {
+        $http.post('login', JSON.stringify($scope.lFormData))
         .then(function (res) {
             //location.reload();
             alert(res.data);
             if (res) {
-                $rootScope.User = res.data;
+               // $rootScope.User = res.data;
             }
             
             $scope.loginFeedback = "Registration Success!";
@@ -93,24 +93,32 @@ fantasy_app.controller('loginController', function ($scope, $http, $location, $r
     
 });
 
-fantasy_app.controller('registerController', function ($scope, $http, $location) {
-  $scope.message = 'Register controller is working';
+fantasy_app.controller('registerController', function ($scope, $http, $httpParamSerializer) {
+    $scope.message = 'Register controller is working';
 
-  $scope.rFormData = {};
-  $scope.loginFeedback = "";
+    alert($httpParamSerializer($scope.rFormData));
+
+  $scope.rFormData = {
+      "name": "",
+     "password": "",
+      "email": ""
+  };
+  //$scope.loginFeedback = "";
 
     $scope.rFormSubmit = function () {
-        $http.post('/register', JSON.stringify($scope.rFormData), {
-            headers: {
-                "Content-Type": "application/json"
+        $http.post('/register', $httpParamSerializer($scope.rFormData),
+            {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
             }
-        }).then(function (res) {
+        ).then(function (res) {
             //location.reload();
             alert(JSON.stringify(res.data));
             $scope.loginFeedback = "Registration Success!";
-            setTimeout(function () {
-                //$location.url('/login');
-            }, 100);
+            //setTimeout(function () {
+            //    //$location.url('/login');
+            //}, 100);
         }, function () {
             alert('I failed!');
         });

@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="./ezl/css/foundation.css">
     <link rel="stylesheet" href="./ezl/css/fantasy.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="ezl/js/jquery-3.2.0.js"></script>
     <script src="./ezl/js/vendor/angular.js"></script>
     <script src="./ezl/js/vendor/angular-route.js"></script>
+	
+    
     <script src="./ezl/js/vendor/foundation.js"></script>
     <script src="./ezl/js/fantasy.js"></script>
 </head>
@@ -23,4 +26,3 @@
     <fantasy-footer></fantasy-footer>
 </body>
 </html>
-<?php error_get_last() ?>

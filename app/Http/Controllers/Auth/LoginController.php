@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Response;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-     protected $redirectTo = '/'; //<=== Default
+    //  protected $redirectTo = '/'; //<=== Default
+    protected $redirectTo = '#';
     
 
     /**
@@ -37,4 +40,36 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        //
+        parent::authenticated($request, $user);
+
+        $console = new ConsoleOutput();
+        $console->writeln("Called my authenticated");
+        
+        if(Auth::check()){
+            return response()->json(array(
+                'data' => 'Yay!',
+            ));
+
+            
+        }
+        
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return response()->json(array(
+            'data' => 'yay',
+        ));
+        //return $this->authenticated($request, $this->guard()->user());
+    }
+    
+
 }

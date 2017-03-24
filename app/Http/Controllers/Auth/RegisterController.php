@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\Registered;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+//use Illuminate\Foundation\Auth\RegistersUsers;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Auth\RegistersUsersEZL;
 
 class RegisterController extends Controller
 {
@@ -21,7 +27,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsersEZL;
 
     /**
      * Where to redirect users after registration.
@@ -29,7 +35,7 @@ class RegisterController extends Controller
      * @var string
      */
     //protected $redirectTo = '/home'; //<=== Default
-    //protected $redirectTo = '/';
+    //protected $redirectTo = '#';
 
 
     /**
@@ -39,7 +45,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
     /**
@@ -58,20 +64,6 @@ class RegisterController extends Controller
     }
 
 
-    // protected function validator($data)
-    // {
-    //     if($data){
-    //         $data = json_decode($data, true);
-
-    //         return Validator::make($data, [
-    //         'name' => 'required|max:255',
-    //         'email' => 'required|email|max:255|unique:users',
-    //         'password' => 'required|min:6|confirmed',
-    //     ]);
-    //     }
-    // }
-
-
 
     /**
      * Create a new user instance after a valid registration.
@@ -88,33 +80,124 @@ class RegisterController extends Controller
         ]);
     }
 
-    // protected function create($data)
+    // public function register(Request $request)
     // {
-    //     if($data){
-    //         $data = json_decode($data, true);
+    //     //if($request)
 
-    //         return User::create([
-    //         'name' => $data['name'],
-    //         'email' => $data['email'],
-    //         'password' => bcrypt($data['password']),
-    //     ]);
-    //     }
+    //     $this->validator($request->all())->validate();
+
+    //     event(new Registered($user = $this->create($request->all())));
+
+    //     $this->guard()->login($user);
+
+    //     return response()->json(array(
+    //         'data' => 'yay'
+    //     ));
         
+        
+    //     //$this->registered($request, $user);
+    //                     //?: redirect($this->redirectPath());
     // }
 
-    public function register(Request $request)
+    // /**
+    //  * The user has been registered.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  mixed  $user
+    //  * @return mixed
+    //  */
+    // protected function registered(Request $request, $user)
+    // {
+    //     //
+    //     return response()->json(array(
+    //         'data' => 'yay'
+    //     ));
+    // }
+
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
     {
-        //if($request)
-
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        return view('auth.register');
     }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    // public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+
+    //     event(new Registered($user = $this->create($request->all())));
+
+    //     $this->guard()->login($user);
+
+    //     return response()->json(array(
+    //         'data' => 'yay'
+    //     ));
+
+    
+        
+        
+        //$this->registered($request, $user);
+                        //?: redirect($this->redirectPath());
+    //}
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    // protected function registered(Request $request, $user)
+    // {
+    //     //
+    //     //return response(json([]))
+        
+        
+    //     return response()->json([
+    //         'data' => 'Hello!',
+    //     ], 200, [
+    //         'Content-Type' => 'application/json',
+    //     ]);
+        
+        
+    //     // ->json([
+    //     //     'data' => 'yay',
+    //     // ]);
+
+        
+
+    // }
+
+    // protected function register(Request $request){
+
+    //     //if($request->json)
+
+    //     $func = new RegistersUsersEZL();
+    //     $func->register($request);
+
+    //     $this->registered($request, 
+    //     Auth::user());
+    // }
 
 
 }

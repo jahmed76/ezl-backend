@@ -31,6 +31,8 @@ class ProPlayersTableSeeder extends Seeder
         // ]);
 
         //if (Schema::hasTable('pro_teams')) {
+
+            
             $pros = array();
 
             $console = new ConsoleOutput();

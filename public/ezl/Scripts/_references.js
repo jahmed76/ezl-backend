@@ -3,6 +3,7 @@
 /// <reference path="../js/app.js" />
 /// <reference path="../js/dashboard.js" />
 /// <reference path="../js/fantasy.js" />
+/// <reference path="../js/jquery-3.2.0.js" />
 /// <reference path="../js/vendor/angular.js" />
 /// <reference path="../js/vendor/angular-route.js" />
 /// <reference path="../js/vendor/foundation.js" />
