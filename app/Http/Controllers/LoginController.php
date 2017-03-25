@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Auth\Traits\AuthenticatesUsersEZL;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LoginController extends Controller
@@ -20,7 +21,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsersEZL;
 
     /**
      * Where to redirect users after login.
@@ -47,7 +48,7 @@ class LoginController extends Controller
         parent::authenticated($request, $user);
 
         $console = new ConsoleOutput();
-        $console->writeln("Called my authenticated");
+        $console->writeln("Called by authenticated");
         
         // if(Auth::check()){
         //     return response()->json(array(
@@ -59,17 +60,16 @@ class LoginController extends Controller
         
     }
 
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
+    // protected function sendLoginResponse(Request $request)
+    // {
+    //     $request->session()->regenerate();
 
-        $this->clearLoginAttempts($request);
+    //     $this->clearLoginAttempts($request);
 
-        // return response()->json(array(
-        //     'data' => 'yay',
-        // ));
-        //return $this->authenticated($request, $this->guard()->user());
-    }
+    //      return response()->json([
+    //         'data' => Auth::user(),
+    //     ]);
+    // }
     
 
 }

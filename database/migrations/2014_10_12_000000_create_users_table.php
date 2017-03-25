@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
                 $table->string('player_name')->nullable();
                 $table->string('email')->unique();
                 $table->string('password');
+                $table->string('role')->nullable();
                 $table->rememberToken();
                 $table->timestamps();
             });

@@ -76,16 +76,22 @@ fantasy_app.controller('loginController', function ($scope, $http) {
     $scope.loginFeedback = "";
 
     $scope.lFormSubmit = function () {
-        $http.post('login', JSON.stringify($scope.lFormData))
-        .then(function (res) {
-            //location.reload();
-            alert(res.data);
-            if (res) {
-               // $rootScope.User = res.data;
+        $http.post('auth/register', $scope.rFormData,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
             }
-            
-            $scope.loginFeedback = "Registration Success!";
-            //$location.url('/');
+        ).then(function (res) {
+            //location.reload();
+            alert(JSON.stringify(res.data));
+            $scope.registrationFeedback = "Registration Success!";
+            $interval(function (n) {
+                if (n < 4)
+                    $scope.redirectCount += '.';
+                else
+                    $location.path('/userlogin');
+            }, 300, 4);
         }, function () {
             alert('I failed!');
         });
@@ -93,39 +99,61 @@ fantasy_app.controller('loginController', function ($scope, $http) {
     
 });
 
-fantasy_app.controller('registerController', function ($scope, $http, $httpParamSerializer) {
+fantasy_app.controller('registerController', function ($scope, $http, $httpParamSerializer, $location, $interval) {
     $scope.message = 'Register controller is working';
 
-    alert($httpParamSerializer($scope.rFormData));
+    $scope.rFormData = {
+        "name": "",
+        "password": "",
+        "email": "",
+        "password_confirmation": ""
+    };
 
-  $scope.rFormData = {
-      "name": "",
-     "password": "",
-      "email": ""
-  };
-  //$scope.loginFeedback = "";
+    $scope.loginFeedback = "";
+
+    $scope.redirectCount = "";
 
     $scope.rFormSubmit = function () {
-        $http.post('/register', $httpParamSerializer($scope.rFormData),
+        $http.post('auth/register', $scope.rFormData,
             {
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
                 }
             }
         ).then(function (res) {
             //location.reload();
             alert(JSON.stringify(res.data));
-            $scope.loginFeedback = "Registration Success!";
-            //setTimeout(function () {
-            //    //$location.url('/login');
-            //}, 100);
+            $scope.registrationFeedback = "Registration Success!";
+            $interval(function (n) {
+                if (n < 4)
+                    $scope.redirectCount += '.';
+                else
+                    $location.path('/userlogin');
+            }, 300, 4);
         }, function () {
             alert('I failed!');
         });
     }
 
 
-});
+})
+.controller('fNavController',['$scope', '$http', '$rootScope', 'Verify', function ($scope, $http, $rootScope, Verify) {
+    $scope.bLoggedIn = false;
+    $scope.UserCredentials = {
+        username: "John"
+    };
+
+
+    //$scope.UserCredentials = $rootScope.UserCredentials;
+    //if (Verify.LoggedIn()) {
+    //    Verify.User($scope.UserCredentials)
+    //}
+
+
+
+}]);
+
+
 
 fantasy_app.directive("fantasyNavBar", function () {
   return {
@@ -165,3 +193,15 @@ fantasy_app.directive("fantasyFooter", function () {
     templateUrl: "./ezl/include/fantasy_footer.html"
   };
 });
+
+
+
+//$http({ //Angular $http service, used to make all HTTP requests
+//    method: 'GET', //Method of the request you are sending
+//    url: 'http://173.80.170.125:8000/data/proteams' //URL you're sending to aka destination of request
+//}).then(function success(res) { //Then function - works like this: then(success-function-here, failure-function-here);
+//    $scope.FullRoster = res.data; //Declaration of variable using $scope service
+//    //alert(JSON.stringify($scope.FullRoster));
+//}, function failure(res) { //Function to execute if the request fails
+//    alert("HTTP failed!"); //Browser alert letting us know it failed
+//});

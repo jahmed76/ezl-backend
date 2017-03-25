@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,7 +69,7 @@ class RegisterController extends Controller
     {
         //
         return response()->json([
-            'data' => 'Hello!',
+            'data' => Auth::user(),
         ]);
     }
 }

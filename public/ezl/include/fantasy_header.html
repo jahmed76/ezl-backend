@@ -1,4 +1,4 @@
-<header>
+<header ng-controller="fNavController">
   <div class="nav-container">
 
     <div class="logo">
@@ -9,10 +9,13 @@
     <nav>
       <div class="nav-mobile"><a id="nav-toggle" href=""><span></span></a></div>
       <ul class="nav-list">
+          <li ng-click="CheckAuth();"><a href="">Check Me!</a></li>
+          <li ng-click="LogOut();"><a href="">Logout!</a></li>
         <li><a href="#fantasy_how_to_play">How to Play</a></li>
         <li><a href="#fantasy_room">Room</a></li>
         <li><a href="#fantasy_join">Join</a></li>
-        <li><a href="#userlogin">Login</a></li>
+        <li ng-if="!bLoggedIn"><a href="#userlogin">Login</a></li>
+          <li ng-if="bLoggedIn"><a href="#">{{ UserCredentials.username }}</a></li>
       </ul>
     </nav>
   </div>

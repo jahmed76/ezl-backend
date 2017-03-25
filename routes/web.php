@@ -19,7 +19,7 @@ Route::get('/', function () {
 // Route::get('/api', function () {
 //     return view('api_query');
 // });
-Auth::routes();
+//Auth::routes();
 
 
 
@@ -62,6 +62,30 @@ Route::group(['prefix' => 'fantasy'], function() {
     Route::post('room/add/{options}', 'FantasyController@AddRoom');
 });
 
+Route::group(['prefix' => 'auth'], function() {
+    // Route::post('login', 'AuthenticateController@authenticate');
+    Route::post('register', 'RegisterController@register');
+    Route::post('login', 'LoginController@login');
+    Route::get('echo', 'AuthenticateController@EchoAuth');
+    Route::get('logout', 'LoginController@logout');
+    
+    
+    // Route::resource('authenticate', 'AuthenticateController',
+    //     array('only' => array('login','register','authenticate', 'verify', 'logout')));
+        
+        // Route::get('authenticate', 'AuthenticateController@authenticate');
+        // Route::get('verifyuser', 'AuthenticateController@verify');
+        // Route::get('logout', 'AuthenticateController@logout');
+});
+
+// Route::resource('auth', 'AuthenticateController', ['names' => [
+//     'register' => 'auth.RegisterUser'
+// ]]);
+
+
+//        array('only' => array('login','RegisterUser','authenticate', 'verify', 'logout')));
+
+
 
 // Route::
 // Auth::routes();
@@ -74,7 +98,7 @@ Route::group(['prefix' => 'fantasy'], function() {
 
 Route::any('{path}', function($path) {
     //
-    $path = '/';
+    // $path = '/';
     return view('app');
 });
 // Auth::routes();

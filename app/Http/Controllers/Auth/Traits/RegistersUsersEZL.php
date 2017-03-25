@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace App\Http\Controllers\Auth\Traits;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -15,17 +15,17 @@ trait RegistersUsersEZL
     {
         $data = $request->only(['name', 'email', 'password']);
 
-        $this->validator($data)->validate();
+        $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($data)));
+        event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        //$this->guard()->login($user);
 
         // return response()->json(array(
         //     'data' => 'yay'
         // ));
         
-        //$this->registered($request, $user);
+        return $this->registered($request, $user);
                         //?: redirect($this->redirectPath());
     }
 
@@ -74,13 +74,11 @@ trait RegistersUsersEZL
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(Request $request, $user)
-    {
-        //
-        return response()->json([
-            'data' => 'Hello!',
-        ], 200, [
-            'Content-Type' => 'application/json',
-        ]);
-    }
+    // protected function registered(Request $request, $user)
+    // {
+    //     //
+    //     return response()->json([
+    //         'data' => 'Hello!',
+    //     ]);
+    // }
 }
