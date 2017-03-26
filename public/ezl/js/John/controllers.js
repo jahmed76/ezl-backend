@@ -5,6 +5,14 @@
 fantasy_app.controller('MainController', function ($scope, $http, $rootScope, Verify) {
     //$rootScope.User
     alert(Verify.LoggedIn());
+
+    //$rootScope.$on('SetUserInfo', function (event, data) {
+    //    $rootScope.UserInfo = {
+    //        username: data.username,
+    //        role: data.role,
+    //        token: data.token
+    //    };
+    //});
 })
 
 .controller('fantasy_homeController', function ($scope) {
@@ -16,8 +24,15 @@ fantasy_app.controller('MainController', function ($scope, $http, $rootScope, Ve
     $scope.message = 'fantasy_how_to_play controller is working';
 })
 
-.controller('fantasy_roomController', function ($scope) {
-    $scope.message = 'fantasy_room controller is working';
+.controller('fantasy_roomController', function ($scope) { //
+    //$scope.message = 'fantasy_room controller is working';
+})
+
+.controller('fantasy_roomController', function ($scope) { //
+    //$scope.message = 'fantasy_room controller is working';
+
+
+
 })
 
 .controller('fantasy_joinController', function ($scope) {

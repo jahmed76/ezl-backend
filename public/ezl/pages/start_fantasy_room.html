@@ -1,0 +1,16 @@
+<div class="register">
+    <form id="registerF" ng-submit="rFormSubmit();">
+        Username:<br>
+        <input type="text" name="name" ng-model="rFormData.name"> Email:
+        <br>
+        <input type="email" name="email" ng-model="rFormData.email"> Password:
+        <br>
+        <input type="password" name="password" ng-model="rFormData.password"> Confirm Password:<br>
+        <input type="password" name="password_confirmation" ng-model="rFormData.password_confirmation">
+        <!--<input type="hidden" name="_token">-->
+        <input type="submit" value="Submit">
+    </form>
+
+    <pre> {{ rFormData }} </pre>
+    <pre> {{ registrationFeedback + redirectCount }} </pre>
+</div>

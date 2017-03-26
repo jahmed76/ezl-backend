@@ -20,12 +20,12 @@ class CreateRulesetsTable extends Migration
                 $table->increments('id');
                 //$table->('fantasy_roster_id');
                 $table->string('title')->unique();
-
+                $table->integer('creator');
 
                 $table->foreign('creator')
                         ->references('id')->on('users');
 
-                $table->string('creator');
+                
 
                 $table->json('rules');
 

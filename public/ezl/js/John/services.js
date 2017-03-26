@@ -1,5 +1,5 @@
 ﻿//Temp fix - Intellisense
-var fantasy_app = angular.module("fantasyApp", ["ngRoute"]);
+//var fantasy_app = angular.module("fantasyApp", ["ngRoute"]);
 //Comment this or it will fail
 
 fantasy_app.service('Verify', function ($http, $route, $rootScope) {
@@ -27,18 +27,20 @@ fantasy_app.service('Verify', function ($http, $route, $rootScope) {
 
         //return success = function(res)
 
-        $http.get('auth/echo').then(function (res) {
+        var promise = $http.get('auth/echo').then(function (res) {
             alert("Verify.LoggedIn succeeded!");
             alert(JSON.stringify(res.data));
 
             if (res.data.data = "null")
-                query = false;
+                return false;
             else
-                query = true;
-
+                return true;
         }, function () {
-            return alert("Verify.LoggedIn failed!");
+            alert("Verify.LoggedIn failed!");
+            return "Verify.LoggedIn failed!";
         });
+
+        return promise;
 
         //return Promise.resolve(query);
         

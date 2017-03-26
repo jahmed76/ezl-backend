@@ -17,19 +17,19 @@ class CreateFantasyRooms extends Migration
         if(!Schema::hasTable('fantasy_rooms') && Schema::hasTable('users')){
             Schema::create('fantasy_rooms', function (Blueprint $table) {
                 $table->increments('room_id');
-                //$table->('fantasy_roster_id');
+                //$table->increments('fantasy_roster_id');
 
-
-                // $table->foreign('owner')
-                //         ->references('id')->on('users')->nullable();
+                $table->integer('owner');
+                $table->foreign('owner')
+                        ->references('id')->on('users')->nullable();
 
                 $table->string('room_name')->unique();
 
                 // $table->foreign('fantasy_room')
                 //         ->references('room_id')->on('fantasy_rooms');
 
-                $table->json('ruleset');
-
+                $table->string('ruleset')->nullable();
+                $table->json('custom_ruleset')->nullable();
                 $table->json('members')->nullable();
                 
                 //$table->json('points')->nullable();
